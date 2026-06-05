@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from decouple import config, Csv
-
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,7 +81,7 @@ MIDDLEWARE = [
 # ==============================================================================
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://ten-du-an-tren-vercel-cua-ban.vercel.app"
+    "https://https://4-man-sport.vercel.app"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -107,10 +107,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Nếu chạy ở máy tính thì dùng tạm SQLite, đưa lên mạng sẽ tự hút link PostgreSQL
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600
+    )
 }
 
 # MEDIA FILES (để upload ảnh)

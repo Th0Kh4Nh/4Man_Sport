@@ -79,10 +79,10 @@ MIDDLEWARE = [
 ]
 # CORS CONFIGURATION (cho Frontend ReactJS)
 # ==============================================================================
-CORS_ALLOWED_ORIGINS = config(
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://4-man-sport.vercel.app"
-)
+    "https://ten-du-an-tren-vercel-cua-ban.vercel.app"
+]
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'core.urls'

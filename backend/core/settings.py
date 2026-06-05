@@ -108,8 +108,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Nếu chạy ở máy tính thì dùng tạm SQLite, đưa lên mạng sẽ tự hút link PostgreSQL
-        default="postgresql://db_4man_user:dpFZI2L3vqOVG8i4D5sb5z4Bn2PGDNLB@dpg-d8h303c8aovs73emfin0-a/db_4man",
+        # Lệnh này có nghĩa là: 
+        # 1. Nếu chạy ở trên Render, tự động hút biến môi trường DATABASE_URL (Link Internal)
+        # 2. Nếu không tìm thấy (chạy ở máy tính cá nhân), thì xài tạm SQLite.
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
         conn_max_age=600
     )
 }
